@@ -2,13 +2,13 @@ import { registerAs } from '@nestjs/config';
 
 export const DB_NAMESPACE = 'db';
 
-export interface IMongoDbConfig {
+export interface IDbConfig {
   uri: string;
 }
 
 export default registerAs(
   DB_NAMESPACE,
-  (): IMongoDbConfig => ({
+  (): IDbConfig => ({
     uri: process.env.DB_URI,
   }),
 );

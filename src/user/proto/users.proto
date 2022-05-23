@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package keys;
+package users;
 
-service KeysStorageService {
-  rpc FindOneOrCreate (Profile) returns (User);
+service UserService {
+  rpc FindOneOrCreate (ProviderProfile) returns (User);
   rpc GetPublicKey (User) returns (PublicKey);
 }
 
-message Profile {
+message ProviderProfile {
   string provider = 1;
   string id = 2;
   string username = 3;
@@ -18,5 +18,5 @@ message User {
 }
 
 message PublicKey {
-  string publicKey = 1;
+  string public_key = 1;
 }
