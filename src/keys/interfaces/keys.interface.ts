@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 export interface Profile {
   provider: string;
   id: string;
@@ -15,6 +13,6 @@ export interface PublicKey {
 }
 
 export interface KeysStorageService {
-  FindOneOrCreate(profile: Profile): Observable<User>;
-  GetPublicKey(user: User): Observable<PublicKey>;
+  FindOneOrCreate(profile: Profile): User;
+  GetPublicKey(user: User): PublicKey;
 }
