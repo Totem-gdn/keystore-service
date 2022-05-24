@@ -3,7 +3,7 @@ import { KeysController } from './keys.controller';
 import { KeysService } from './keys.service';
 
 @Module({
-  providers: [KeysService],
   controllers: [KeysController],
+  providers: [KeysService],
 })
 export class KeysModule {}

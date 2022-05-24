@@ -1,6 +1,6 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
-    HOST: string;
-    PORT: string;
+    GRPC_HOST: string;
+    GRPC_PORT: string;
   }
 }

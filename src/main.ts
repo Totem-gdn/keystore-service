@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { GrpcOptions, MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { APP_NAMESPACE, IAppConfig } from './configuration/app/app.config';
 
@@ -14,11 +14,11 @@ async function bootstrap() {
   await app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
-      package: 'keys',
+      package: ['grpc.health.v1', 'keys'],
       url: `${host}:${port}`,
-      protoPath: join(__dirname, 'keys', 'proto', 'keys.proto'),
+      protoPath: [join(__dirname, 'health', 'proto', 'health.proto'), join(__dirname, 'keys', 'proto', 'keys.proto')],
     },
-  });
+  } as GrpcOptions);
   await app.startAllMicroservices();
 }
 
