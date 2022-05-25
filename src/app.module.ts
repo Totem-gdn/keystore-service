@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import appConfig from './configuration/app/app.config';
-import dbConfig, { IDbConfig, DB_NAMESPACE } from './configuration/db/db.config';
+import appConfig from './configuration/grpc/grpc.config';
+import dbConfig, { IMongoDbConfig, MONGODB_NAMESPACE } from './configuration/mongodb/mongodb.config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HealthModule } from './health/health.module';
 import { UserModule } from './user/user.module';
@@ -14,9 +14,13 @@ import { UserModule } from './user/user.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        uri: configService.get<IDbConfig>(DB_NAMESPACE).uri,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const mongoDbCfg = configService.get<IMongoDbConfig>(MONGODB_NAMESPACE);
+        return {
+          uri: mongoDbCfg.uri,
+          dbName: mongoDbCfg.database,
+        };
+      },
       inject: [ConfigService],
     }),
     HealthModule,

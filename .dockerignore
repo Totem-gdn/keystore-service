@@ -124,5 +124,6 @@ dist
 .tern-port
 
 # Unnecessary files
+delpoyment/
 LICENSE
 README.md

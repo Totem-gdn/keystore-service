@@ -2,21 +2,25 @@ syntax = "proto3";
 
 package users;
 
-service UserService {
-  rpc FindOneOrCreate (ProviderProfile) returns (User);
-  rpc GetPublicKey (User) returns (PublicKey);
-}
-
-message ProviderProfile {
-  string provider = 1;
-  string id = 2;
+message FindOrCreateRequest {
+  string id = 1;
+  string provider = 2;
   string username = 3;
 }
 
-message User {
+message FindOrCreateResponse {
   string id = 1;
 }
 
-message PublicKey {
+message PublicKeyRequest {
+  string id = 1;
+}
+
+message PublicKeyResponse {
   string public_key = 1;
+}
+
+service User {
+  rpc FindOrCreate (FindOrCreateRequest) returns (FindOrCreateResponse);
+  rpc GetPublicKey (PublicKeyRequest) returns (PublicKeyResponse);
 }

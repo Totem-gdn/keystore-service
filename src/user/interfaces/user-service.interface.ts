@@ -1,18 +1,22 @@
-export interface ProviderProfile {
-  provider: string;
+export interface FindOrCreateRequest {
   id: string;
+  provider: string;
   username: string;
 }
 
-export interface User {
+export interface FindOrCreateResponse {
   id: string;
 }
 
-export interface PublicKey {
+export interface PublicKeyRequest {
+  id: string;
+}
+
+export interface PublicKeyResponse {
   publicKey: string;
 }
 
-export interface UserService {
-  FindOneOrCreate(profile: ProviderProfile): User;
-  GetPublicKey(user: User): PublicKey;
+export interface User {
+  FindOrCreate(profile: FindOrCreateRequest): FindOrCreateResponse;
+  GetPublicKey(user: PublicKeyRequest): PublicKeyResponse;
 }
