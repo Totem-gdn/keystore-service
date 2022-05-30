@@ -20,7 +20,7 @@ message PublicKeyResponse {
   string public_key = 1;
 }
 
-service User {
+service Users {
   rpc FindOrCreate (FindOrCreateRequest) returns (FindOrCreateResponse);
   rpc GetPublicKey (PublicKeyRequest) returns (PublicKeyResponse);
 }

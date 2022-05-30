@@ -4,7 +4,7 @@ import appConfig from './configuration/grpc/grpc.config';
 import dbConfig, { IMongoDbConfig, MONGODB_NAMESPACE } from './configuration/mongodb/mongodb.config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HealthModule } from './health/health.module';
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -24,7 +24,7 @@ import { UserModule } from './user/user.module';
       inject: [ConfigService],
     }),
     HealthModule,
-    UserModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

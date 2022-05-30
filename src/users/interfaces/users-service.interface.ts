@@ -16,7 +16,7 @@ export interface PublicKeyResponse {
   publicKey: string;
 }
 
-export interface User {
+export interface Users {
   FindOrCreate(profile: FindOrCreateRequest): FindOrCreateResponse;
   GetPublicKey(user: PublicKeyRequest): PublicKeyResponse;
 }

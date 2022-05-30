@@ -28,9 +28,7 @@ export class User {
 
   @Prop({
     required: true,
-    validate(val: Provider[]) {
-      return val.length > 0;
-    },
+    validate: (val: Provider[]) => val.length > 0,
   })
   auth: Provider[];
 }

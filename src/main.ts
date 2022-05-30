@@ -14,7 +14,7 @@ async function bootstrap() {
     options: {
       package: ['grpc.health.v1', 'users'],
       url: `${host}:${port}`,
-      protoPath: [join(__dirname, 'health', 'proto', 'health.proto'), join(__dirname, 'user', 'proto', 'users.proto')],
+      protoPath: [join(__dirname, 'health', 'proto', 'health.proto'), join(__dirname, 'users', 'proto', 'users.proto')],
     },
   } as GrpcOptions);
   await app.startAllMicroservices();
