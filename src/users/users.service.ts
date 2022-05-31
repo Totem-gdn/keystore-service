@@ -32,12 +32,12 @@ export class UsersService {
         auth: [profile],
       });
       // create random avatar and 5 random items
-      await this.assetsService.generateAvatar({ id: user.id });
-      await this.assetsService.generateItem({ id: user.id });
-      await this.assetsService.generateItem({ id: user.id });
-      await this.assetsService.generateItem({ id: user.id });
-      await this.assetsService.generateItem({ id: user.id });
-      await this.assetsService.generateItem({ id: user.id });
+      await this.assetsService.generateAvatar({ publicKey: user.publicKey });
+      await this.assetsService.generateItem({ publicKey: user.publicKey });
+      await this.assetsService.generateItem({ publicKey: user.publicKey });
+      await this.assetsService.generateItem({ publicKey: user.publicKey });
+      await this.assetsService.generateItem({ publicKey: user.publicKey });
+      await this.assetsService.generateItem({ publicKey: user.publicKey });
     }
     return { id: user.id };
   }
