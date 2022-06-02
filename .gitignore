@@ -122,3 +122,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# AWS SSL Cert
+/rds-combined-ca-bundle.pem
