@@ -21,6 +21,8 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/keystore-service
 
+ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem ./rds-combined-ca-bundle.pem
+
 COPY package.json .
 
 RUN npm i --only=production
