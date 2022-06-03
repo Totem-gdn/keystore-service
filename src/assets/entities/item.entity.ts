@@ -28,6 +28,16 @@ export class ItemEntity {
     return `${this._itemType}`;
   }
 
+  get schemaValues(): IItem {
+    return {
+      tipMaterial: this._tipMaterial,
+      element: this._element,
+      shaftColor: this._shaftColor,
+      range: this._range,
+      damage: this._damage,
+    };
+  }
+
   toString(): string {
     return `Tip:${this._tipMaterial},Element:${this._element},ShaftColor:${this._shaftColor},Range:${this._range},Damage:${this._damage}`;
   }

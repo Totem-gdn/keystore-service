@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { AssetOwner } from './utils/asset-owner';
+import { IAvatar } from '../interfaces/avatar.interface';
 
 export type AvatarDocument = Avatar & Document;
 
@@ -11,14 +12,8 @@ export type AvatarDocument = Avatar & Document;
   timestamps: true,
 })
 export class Avatar extends AssetOwner {
-  // @Prop({ required: true, unique: true })
-  // publicKey: string;
-
-  // @Prop({ required: true, unique: true })
-  // privateKey: string;
-
-  @Prop({ required: true })
-  avatar: string;
+  @Prop({ required: true, type: Object })
+  avatar: IAvatar;
 }
 
 export const AvatarSchema = SchemaFactory.createForClass(Avatar);

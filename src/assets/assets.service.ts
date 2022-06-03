@@ -19,7 +19,7 @@ export class AssetsService {
     await this.avatarModel.create({
       owner: owner.publicKey,
       owners: [owner.publicKey],
-      avatar: avatarEntity.toString(),
+      avatar: avatarEntity.schemaValues,
     });
   }
 
@@ -29,7 +29,7 @@ export class AssetsService {
       owner: owner.publicKey,
       owners: [owner.publicKey],
       itemType: itemEntity.itemType,
-      item: itemEntity.toString(),
+      item: itemEntity.schemaValues,
     });
   }
 }

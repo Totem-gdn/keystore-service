@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { AssetOwner } from './utils/asset-owner';
+import { IItem } from '../interfaces/item.interface';
 
 export type ItemDocument = Item & Document;
 
@@ -11,17 +12,11 @@ export type ItemDocument = Item & Document;
   timestamps: true,
 })
 export class Item extends AssetOwner {
-  // @Prop({ required: true, unique: true })
-  // publicKey: string;
-
-  // @Prop({ required: true, unique: true })
-  // privateKey: string;
-
   @Prop({ required: true, index: true })
   itemType: string;
 
-  @Prop({ required: true })
-  item: string;
+  @Prop({ required: true, type: Object })
+  item: IItem;
 }
 
 export const ItemSchema = SchemaFactory.createForClass(Item);

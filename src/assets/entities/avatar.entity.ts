@@ -6,13 +6,13 @@ import { Color, ColorUtils } from '../lib/color-utils';
 import { IAvatar } from '../interfaces/avatar.interface';
 
 export class AvatarEntity {
-  private _sex: SexEnum;
-  private _skinColor: Color;
-  private _hairColor: Color;
-  private _hairStyle: HairStyleEnum;
-  private _eyeColor: Color;
-  private _bodyFat: BodyFatEnum;
-  private _bodyMuscles: BodyMusclesEnum;
+  private readonly _sex: SexEnum;
+  private readonly _skinColor: Color;
+  private readonly _hairColor: Color;
+  private readonly _hairStyle: HairStyleEnum;
+  private readonly _eyeColor: Color;
+  private readonly _bodyFat: BodyFatEnum;
+  private readonly _bodyMuscles: BodyMusclesEnum;
 
   constructor();
   constructor(avatar: IAvatar);
@@ -26,32 +26,16 @@ export class AvatarEntity {
     this._bodyMuscles = avatar?.bodyMuscles || getRandomBodyMuscles();
   }
 
-  set sex(value: SexEnum) {
-    this._sex = value;
-  }
-
-  set skinColor(value: Color) {
-    this._skinColor = value;
-  }
-
-  set hairColor(value: Color) {
-    this._hairColor = value;
-  }
-
-  set hairStyle(value: HairStyleEnum) {
-    this._hairStyle = value;
-  }
-
-  set eyeColor(value: Color) {
-    this._eyeColor = value;
-  }
-
-  set bodyFat(value: BodyFatEnum) {
-    this._bodyFat = value;
-  }
-
-  set bodyMuscles(value: BodyMusclesEnum) {
-    this._bodyMuscles = value;
+  get schemaValues(): IAvatar {
+    return {
+      sex: this._sex,
+      skinColor: this._skinColor,
+      hairColor: this._hairColor,
+      hairStyle: this._hairStyle,
+      eyeColor: this._eyeColor,
+      bodyFat: this._bodyFat,
+      bodyMuscles: this._bodyMuscles,
+    };
   }
 
   toString(): string {
