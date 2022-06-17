@@ -3,11 +3,11 @@ FROM node:lts-alpine AS builder
 
 WORKDIR /usr/src/keystore-service
 
-COPY package.json ./
-
 RUN npm i glob rimraf
 
-RUN npm i --only=development
+COPY package.json package-lock.json ./
+
+RUN npm ci
 
 COPY . .
 
@@ -23,9 +23,9 @@ WORKDIR /usr/src/keystore-service
 
 ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem ./rds-combined-ca-bundle.pem
 
-COPY package.json .
+COPY package.json package-lock.json ./
 
-RUN npm i --only=production
+RUN npm ci --only=production
 
 COPY --from=builder /usr/src/keystore-service/dist ./dist
 
