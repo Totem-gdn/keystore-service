@@ -25,7 +25,7 @@ ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem ./rds-comb
 
 COPY package.json package-lock.json ./
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 COPY --from=builder /usr/src/keystore-service/dist ./dist
 
