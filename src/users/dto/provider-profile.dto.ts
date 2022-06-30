@@ -7,7 +7,7 @@ export class ProviderProfileDto {
 
   @IsString()
   @IsNotEmpty()
-  @IsIn(['google', 'twitter', 'facebook'])
+  @IsIn(['google', 'twitter', 'facebook', 'steam', 'itch-io'])
   provider: string;
 
   @IsString()
