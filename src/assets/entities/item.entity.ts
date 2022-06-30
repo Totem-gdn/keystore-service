@@ -16,9 +16,9 @@ export class ItemEntity {
   constructor();
   constructor(item: IItem & { type: ItemTypeEnum });
   constructor(item?: IItem & { type: ItemTypeEnum }) {
-    this._itemType = item?.type || getRandomItemType();
-    this._tipMaterial = item?.tipMaterial || getRandomTipMaterial();
-    this._element = item?.element || getRandomElement();
+    this._itemType = item?.type !== undefined ? item.type : getRandomItemType();
+    this._tipMaterial = item?.tipMaterial !== undefined ? item.tipMaterial : getRandomTipMaterial();
+    this._element = item?.element !== undefined ? item.element : getRandomElement();
     this._shaftColor = item?.shaftColor || ColorUtils.randomHex();
     this._range = item?.range || NumberUtils.getRandomFloat(50, 100);
     this._damage = item?.damage || NumberUtils.getRandomFloat(50, 100);

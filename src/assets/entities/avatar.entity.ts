@@ -17,13 +17,13 @@ export class AvatarEntity {
   constructor();
   constructor(avatar: IAvatar);
   constructor(avatar?: IAvatar) {
-    this._sex = avatar?.sex || getRandomSex();
+    this._sex = avatar?.sex !== undefined ? avatar.sex : getRandomSex();
     this._skinColor = avatar?.skinColor || ColorUtils.randomHex();
     this._hairColor = avatar?.hairColor || ColorUtils.randomHex();
-    this._hairStyle = avatar?.hairStyle || getRandomHairStyle();
+    this._hairStyle = avatar?.hairStyle !== undefined ? avatar.hairStyle : getRandomHairStyle();
     this._eyeColor = avatar?.eyeColor || ColorUtils.randomHex();
-    this._bodyFat = avatar?.bodyFat || getRandomBodyFat();
-    this._bodyMuscles = avatar?.bodyMuscles || getRandomBodyMuscles();
+    this._bodyFat = avatar?.bodyFat !== undefined ? avatar.bodyFat : getRandomBodyFat();
+    this._bodyMuscles = avatar?.bodyMuscles !== undefined ? avatar.bodyMuscles : getRandomBodyMuscles();
   }
 
   get schemaValues(): IAvatar {

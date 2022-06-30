@@ -6,16 +6,40 @@ import { Item, ItemDocument } from './schemas/item.schema';
 import { AvatarEntity } from './entities/avatar.entity';
 import { ItemEntity } from './entities/item.entity';
 import { OwnerDto } from '../users/dto/owner.dto';
+import { avatars } from './entities/__mocks__/avatars';
+import { items } from './entities/__mocks__/items';
 
 @Injectable()
 export class AssetsService {
+  private readonly avatars: IterableIterator<AvatarEntity>;
+  private readonly items: IterableIterator<ItemEntity>;
+
   constructor(
     @InjectModel(Avatar.name) private readonly avatarModel: Model<AvatarDocument>,
     @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
-  ) {}
+  ) {
+    this.avatars = AssetsService.avatarsGenerator();
+    this.items = AssetsService.itemsGenerator();
+  }
+
+  private static *avatarsGenerator(): IterableIterator<AvatarEntity> {
+    while (true) {
+      for (const idx in avatars) {
+        yield avatars[idx];
+      }
+    }
+  }
+
+  private static *itemsGenerator(): IterableIterator<ItemEntity> {
+    while (true) {
+      for (const idx in items) {
+        yield items[idx];
+      }
+    }
+  }
 
   async generateAvatar(owner: OwnerDto): Promise<void> {
-    const avatarEntity = new AvatarEntity();
+    const avatarEntity = this.avatars.next().value;
     await this.avatarModel.create({
       owner: owner.publicKey,
       owners: [owner.publicKey],
@@ -24,7 +48,7 @@ export class AssetsService {
   }
 
   async generateItem(owner: OwnerDto): Promise<void> {
-    const itemEntity = new ItemEntity();
+    const itemEntity = this.items.next().value;
     await this.itemModel.create({
       owner: owner.publicKey,
       owners: [owner.publicKey],
