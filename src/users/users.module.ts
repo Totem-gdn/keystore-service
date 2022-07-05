@@ -4,9 +4,16 @@ import { UsersService } from './users.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { AssetsModule } from '../assets/assets.module';
+import { SocialProfile, SocialProfileSchema } from './schemas/social-profile.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), AssetsModule],
+  imports: [
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: SocialProfile.name, schema: SocialProfileSchema },
+    ]),
+    AssetsModule,
+  ],
   controllers: [UsersController],
   providers: [UsersService],
 })

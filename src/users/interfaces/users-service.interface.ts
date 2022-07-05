@@ -1,7 +1,6 @@
 export interface FindOrCreateRequest {
   id: string;
   provider: string;
-  username: string;
 }
 
 export interface FindOrCreateResponse {
