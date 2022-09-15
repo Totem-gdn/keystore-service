@@ -1,4 +1,4 @@
-export type Color = `#${string}`;
+export type Color = string;
 
 export class ColorUtils {
   static randomHex(): Color {

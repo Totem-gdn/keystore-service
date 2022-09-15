@@ -13,6 +13,7 @@ export class AvatarEntity {
   private readonly _eyeColor: Color;
   private readonly _bodyFat: BodyFatEnum;
   private readonly _bodyMuscles: BodyMusclesEnum;
+  private readonly _clothingColor: Color;
 
   constructor();
   constructor(avatar: IAvatar);
@@ -24,6 +25,7 @@ export class AvatarEntity {
     this._eyeColor = avatar?.eyeColor || ColorUtils.randomHex();
     this._bodyFat = avatar?.bodyFat !== undefined ? avatar.bodyFat : getRandomBodyFat();
     this._bodyMuscles = avatar?.bodyMuscles !== undefined ? avatar.bodyMuscles : getRandomBodyMuscles();
+    this._clothingColor = avatar?.clothingColor || ColorUtils.randomHex();
   }
 
   get schemaValues(): IAvatar {
@@ -35,10 +37,11 @@ export class AvatarEntity {
       eyeColor: this._eyeColor,
       bodyFat: this._bodyFat,
       bodyMuscles: this._bodyMuscles,
+      clothingColor: this._clothingColor,
     };
   }
 
   toString(): string {
-    return `Sex:${this._sex},SkinColor:${this._skinColor},HairColor:${this._hairColor},HairStyle:${this._hairStyle},EyeColor:${this._eyeColor},BodyFat:${this._bodyFat},BodyMuscles:${this._bodyMuscles}`;
+    return `Sex:${this._sex},SkinColor:${this._skinColor},HairColor:${this._hairColor},HairStyle:${this._hairStyle},EyeColor:${this._eyeColor},BodyFat:${this._bodyFat},BodyMuscles:${this._bodyMuscles},ClothingColor:${this._clothingColor}`;
   }
 }

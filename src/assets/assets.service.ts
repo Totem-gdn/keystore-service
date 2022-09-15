@@ -8,6 +8,7 @@ import { ItemEntity } from './entities/item.entity';
 import { OwnerDto } from '../users/dto/owner.dto';
 import { avatars } from './entities/__mocks__/avatars';
 import { items } from './entities/__mocks__/items';
+import { ColorUtils } from './lib/color-utils';
 
 @Injectable()
 export class AssetsService {
@@ -25,7 +26,7 @@ export class AssetsService {
   private static *avatarsGenerator(): IterableIterator<AvatarEntity> {
     while (true) {
       for (const idx in avatars) {
-        yield avatars[idx];
+        yield new AvatarEntity({ ...avatars[idx], clothingColor: ColorUtils.randomHex() });
       }
     }
   }
@@ -33,7 +34,7 @@ export class AssetsService {
   private static *itemsGenerator(): IterableIterator<ItemEntity> {
     while (true) {
       for (const idx in items) {
-        yield items[idx];
+        yield new ItemEntity({ ...items[idx] });
       }
     }
   }

@@ -12,4 +12,5 @@ export interface IAvatar {
   eyeColor: Color;
   bodyFat: BodyFatEnum;
   bodyMuscles: BodyMusclesEnum;
+  clothingColor: Color;
 }
